@@ -9,7 +9,7 @@ const buildVis = (data,svg_name) => {
     let chart_width = $(svg_name).width();
     let chart_height = $(svg_name).height();
     margin = {
-        left: 60,
+        left: 90,
         right: 40,
         bottom: 20,
         top: 20
@@ -79,14 +79,12 @@ const buildVis = (data,svg_name) => {
         .enter().append("g")
         .attr("class", "legend")
         .attr("transform", (d, i) => { return "translate(30," + i * 19 + ")"; });
-    
     legend.append("rect")
         .attr("x", chart_width - legPad)
         .attr("y",5)
         .attr("width", 18)
         .attr("height", 18)
         .style("fill", (d, i) => {return colorArr.slice().reverse()[i];});
-    
     legend.append("text")
         .attr("x", chart_width - (legPad - 20))
         .attr("y", 15)
@@ -100,5 +98,15 @@ const buildVis = (data,svg_name) => {
                 return "Oxycodone"
         };
     })
+
+    chart.append("text")
+        .attr("transform","rotate(-90)")
+        .attr("y",0)
+        .attr("x",0 - (chart_height/2))
+        .attr("dy","1em")
+        .attr("class","y-label")
+        .style("text-anchor", "middle")
+        .style("font-weight","bold")
+        .text("Quantity Purchased");
 }
 
