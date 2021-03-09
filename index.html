@@ -11,12 +11,16 @@
             crossorigin="anonymous"></script>
     <script src="js/pills.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
+    <div height="10%" width="100%">
+        <h1><p class="text-center">Hydrocodone and Oxycodone use per Florida County</p></h1>
+    </div>
     <div>
-        <div><svg width="100%" height="33%" id="vis1" name="vis" class="default_svg"></svg></div>
-        <div><svg width="100%" height="33%" id="vis2" name="vis" class="default_svg"></svg></div>
-        <div><svg width="100%" height="33%" id="vis3" name="vis" class="default_svg"></svg></div>
+        <div><svg width="100%" height="30%" id="vis1" name="vis" class="default_svg"></svg></div>
+        <div><svg width="100%" height="30%" id="vis2" name="vis" class="default_svg"></svg></div>
+        <div><svg width="100%" height="30%" id="vis3" name="vis" class="default_svg"></svg></div>
     </div>
 </body>
 
@@ -36,7 +40,6 @@
         data.sort((a,b) => (b.oxyCount + b.hydCount) - (a.oxyCount + a.hydCount));
         let third = Math.ceil(data.length/3);
         let twoThird = Math.ceil(2*data.length/3);
-        printVals(data);
         let dataFirstThird = data.splice(0,third);
         let dataSecondThird = data.splice(third,twoThird);
         let dataLastThird = data.splice(-twoThird);

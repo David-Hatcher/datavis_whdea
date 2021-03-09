@@ -37,7 +37,6 @@ const buildVis = (data,svg_name) => {
                     .range(colorArr);
 
     let stackedData = d3.stack().keys(colorGroups)(data);
-    console.log(stackedData);
     let bars = chart.append("g").selectAll("g")
                     .data(stackedData)
                         .enter().append("g")
@@ -64,7 +63,7 @@ const buildVis = (data,svg_name) => {
                                     text = "Hydrocodone ";
                                     v = d[1] - d[0];
                                 }
-                                d3.select('#tooltip').transition().duration(200).style('opacity', 1).text(text + "Count: " + v)
+                                d3.select('#tooltip').style('opacity', 1).text(text + "Count: " + v)
                             })
                             .on("mouseout" , (d) =>{
                                 d3.select('#tooltip').style('opacity', 0)
