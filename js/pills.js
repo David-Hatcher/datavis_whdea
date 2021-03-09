@@ -10,7 +10,7 @@ const buildVis = (data,svg_name) => {
     let chart_height = $(svg_name).height();
     margin = {
         left: 60,
-        right: 60,
+        right: 40,
         bottom: 20,
         top: 20
     }
@@ -73,7 +73,33 @@ const buildVis = (data,svg_name) => {
                                 d3.select('#tooltip')
                                     .style('left', (d3.event.pageX) + 'px')
                                     .style('top', (d3.event.pageY - 30) + 'px')
-                            })
-
-
+                            });
+    let legPad = 200;
+    let legend = chart.selectAll(".legend")
+        .data(colorArr)
+        .enter().append("g")
+        .attr("class", "legend")
+        .attr("transform", (d, i) => { return "translate(30," + i * 19 + ")"; });
+    
+    legend.append("rect")
+        .attr("x", chart_width - legPad)
+        .attr("y",5)
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", (d, i) => {return colorArr.slice().reverse()[i];});
+    
+    legend.append("text")
+        .attr("x", chart_width - (legPad - 20))
+        .attr("y", 15)
+        .attr("dy", ".35em")
+        .style("text-anchor", "start")
+        .text((d, i) => {
+        switch(i){
+            case 0:
+                return "Hydrocodone";
+            case 1:
+                return "Oxycodone"
+        };
+    })
 }
+
