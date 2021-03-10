@@ -1,4 +1,5 @@
 <head>
+    <!--Written by David Hatcher and Curtis Goodwin for Data Visualization CAP:4744-->
     <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -38,19 +39,17 @@
     }).then(rows => {
         let data = rows;
         data.sort((a,b) => (b.oxyCount + b.hydCount) - (a.oxyCount + a.hydCount));
+        //Sorting by county name creates massive outliers that surpress the rest of the data
+        //data.sort((a,b) => a.countyName.localeCompare(b.countyName));
         let third = Math.ceil(data.length/3);
-        let twoThird = Math.ceil(2*data.length/3);
         let dataFirstThird = data.splice(0,third);
-        let dataSecondThird = data.splice(third,twoThird);
-        let dataLastThird = data.splice(-twoThird);
+        let dataSecondThird = data.splice(0,third);
+        let dataLastThird = data.splice(0,third);
         buildVis(dataFirstThird,"#vis1");
-        buildVis(dataSecondThird,"#vis3");
-        buildVis(dataLastThird,"#vis2");
+        buildVis(dataSecondThird,"#vis2");
+        buildVis(dataLastThird,"#vis3");
     }).catch(error => {
         console.log(error);
     })
 
-    const sortData = (data) =>{
-
-    }
 </script>
